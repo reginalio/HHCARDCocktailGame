@@ -30,8 +30,8 @@ public class MainActivity extends ActionBarActivity {
         // android.R.layout.simple_list_item_1 is one of the resources needed.
         // It is a predefined layout provided by Android that stands in as a default
 
-        ListAdapter theAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
-                cocktails);
+        ListAdapter theAdapter;
+        theAdapter = new MyAdapter(this, cocktails);
 
         // ListViews display data in a scrollable list
         ListView theListView = (ListView) findViewById(R.id.lv_cocktails);
