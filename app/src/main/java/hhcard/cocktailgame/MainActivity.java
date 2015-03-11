@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // Simple array with a list of my favorite TV shows
-        String[] cocktails = {"Screwdriver", "Coming soon"};
+        String[] cocktails = {"cocktail 1", "Coming soon"};
 
         // The ListAdapter acts as a bridge between the data and each ListItem
         // You fill the ListView with a ListAdapter. You pass it a context represented by
@@ -41,14 +41,16 @@ public class MainActivity extends ActionBarActivity {
 
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                 String cocktailPicked = "You selected " +
-                        String.valueOf(adapterView.getItemAtPosition(i));
+                        String.valueOf(adapterView.getItemAtPosition(position));
 
                 Toast.makeText(MainActivity.this, cocktailPicked, Toast.LENGTH_SHORT).show();
 
-               // Intent goToMakeCocktail = new Intent(this, makeCocktailScreen.class);
+                Intent goToMakeCocktail = new Intent(view.getContext(), MakeCocktailScreen.class);
+                goToMakeCocktail.putExtra("whichCocktail", cocktailPicked);
+                startActivity(goToMakeCocktail);
             }
         });
     }
@@ -67,9 +69,6 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 }

@@ -1,8 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:weightSum="1">
 
+    <TextView
+        android:text="@string/choose_mixer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/select_cocktail"
+        android:textSize="40sp"
+        android:textColor="#ffffff"
+        android:textStyle="bold" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/vodka"
+            android:layout_weight="1"
+            android:src="@drawable/vodka"
+            />
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/orangeJuice"
+            android:layout_weight="1"
+            android:src="@drawable/orange_juice"/>
+        <ImageButton
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/ice"
+            android:layout_weight="1"
+            android:src="@drawable/ice"/>
+
+    </LinearLayout>
 
 </LinearLayout>
