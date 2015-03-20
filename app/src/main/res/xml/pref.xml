@@ -14,10 +14,10 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         android:defaultValue="@+string/default_MAC" />
 
     <EditTextPreference
-        android:key="pref_commandLeft"
-        android:title="Symbol for left motor"
-        android:summary="Command symbol for left motor"
-        android:defaultValue="@+string/default_commandLeft" />
+        android:key="pref_commandL1"
+        android:title="Symbol for LED 1"
+        android:summary="Command symbol for LED 1"
+        android:defaultValue="@+string/default_commandL1" />
 
     <EditTextPreference
         android:key="pref_commandRight"

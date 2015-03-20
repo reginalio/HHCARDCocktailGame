@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 public class MakeCocktailScreen extends Activity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,8 +18,10 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
         setContentView(R.layout.activity_makecocktailscreen);
 
         Intent cocktailToBeMade = getIntent();
-
         String previousActivity = cocktailToBeMade.getExtras().getString("whichCocktail");
+
+        TextView youAreMaking = (TextView) findViewById(R.id.cocktail_chosen);
+        youAreMaking.setText("Let's make " + previousActivity);
 
         TextView whatToChooseTextView = (TextView) findViewById(R.id.select_cocktail);
 

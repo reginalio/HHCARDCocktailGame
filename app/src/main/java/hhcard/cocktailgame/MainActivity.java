@@ -49,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(MainActivity.this, cocktailPicked, Toast.LENGTH_SHORT).show();
 
                 Intent goToMakeCocktail = new Intent(view.getContext(), MakeCocktailScreen.class);
-                goToMakeCocktail.putExtra("whichCocktail", cocktailPicked);
+                goToMakeCocktail.putExtra("whichCocktail", String.valueOf(adapterView.getItemAtPosition(position)));
                 startActivity(goToMakeCocktail);
             }
         });

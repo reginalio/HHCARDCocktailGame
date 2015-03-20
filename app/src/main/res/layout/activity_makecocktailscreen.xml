@@ -7,15 +7,25 @@
     android:weightSum="1">
 
     <TextView
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:id="@+id/cocktail_chosen"
+        android:textSize="30sp"
+        android:textColor="#ffffffff"
+        android:textStyle="bold"
+        android:background="#a00a141b" />
+
+    <TextView
         android:text="@string/choose_mixer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:id="@+id/select_cocktail"
-        android:textSize="40sp"
-        android:textColor="#ffffff"
-        android:textStyle="bold"
-        android:background="#ffff4595" />
+        android:textSize="30sp"
+        android:textColor="#ff2b9fff"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,17 +36,20 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/vodka"
-            android:src="@drawable/vodka" />
+            android:src="@drawable/vodka"
+            android:background="#ffffffff" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/orangeJuice"
-            android:src="@drawable/orange_juice" />
+            android:src="@drawable/orange_juice"
+            android:background="#ffffffff" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/ice"
-            android:src="@drawable/ice" />
+            android:src="@drawable/ice"
+            android:background="#ffffffff" />
 
     </LinearLayout>
 
