@@ -100,8 +100,6 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
     };
 
     public void onSensorChanged(SensorEvent e) {
-        String directionL = "";
-        String directionR = "";
         String cmdSend;
         boolean pouring;
         float xRaw, yRaw;		// RAW-value from Accelerometer sensor (RAW-�������� �� ��������������)

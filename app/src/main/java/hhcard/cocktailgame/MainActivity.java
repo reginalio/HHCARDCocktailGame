@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // Simple array with a list of my favorite TV shows
-        String[] cocktails = {"cocktail 1", "Coming soon"};
+        String[] cocktails = {"Screwdriver", "Strawberry Daiquiri", "Margarita", "Pina Colada" };
 
         // The ListAdapter acts as a bridge between the data and each ListItem
         // You fill the ListView with a ListAdapter. You pass it a context represented by

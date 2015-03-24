@@ -47,8 +47,10 @@ class MyAdapter extends ArrayAdapter<String> {
         // Get the ImageView in the layout
         ImageView theImageView = (ImageView) theView.findViewById(R.id.imageView1);
 
+       int[] cocktailIcon = {R.drawable.screwdriver, R.drawable.strawberry_daiquiri,
+               R.drawable.margarita, R.drawable.pina_colada};
         // We can set a ImageView like this
-        theImageView.setImageResource(R.drawable.cocktail_icon);
+        theImageView.setImageResource(cocktailIcon[position]);
 
         return theView;
 
