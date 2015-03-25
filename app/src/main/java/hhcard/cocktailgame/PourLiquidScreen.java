@@ -9,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,11 +34,17 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
     private String commandL1;		// command symbol for LED1 from settings (������ ������� ������ ��������� �� ��������)
 
     private int poured = 0;         // amount of liquid poured
+    private int amountToPour = 0;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pourliquid);
+
+        Intent pourIngredient = getIntent();
+        amountToPour = pourIngredient.getExtras().getInt("amountToPour");
+        mp = MediaPlayer.create(this,R.raw.sink);
 
         address = (String) getResources().getText(R.string.default_MAC);
         commandL1 = (String)"A";
@@ -112,76 +119,69 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
         if(yRaw < -0.3) {    // passed 90 degree tilt to left
             pouring = true;
             poured += 1;
+            mp.start();
         }
-        else
+        else{
             pouring = false;
+        }
+
 
 
         poured = Math.min(poured, 1000);
-        int threshold = 5;
+        int threshold = 10;
 
-        if(poured > threshold*4)
-            cmdSend = "D";
-        else if(poured > threshold*3)
-            cmdSend = "C";
-        else if(poured > threshold*2)
-            cmdSend = "B";
-        else if(poured > threshold)
-            cmdSend = "A";
-        else
+        if(poured > threshold*4) {
+            cmdSend = "I";
+            if(amountToPour == threshold*4){
+                cmdSend = "H";
+                if(BT_is_connect) bl.sendData(cmdSend);
+
+                Intent goBackToChooseIngredient = new Intent();
+                setResult(RESULT_OK, goBackToChooseIngredient);
+                mp.release();
+                finish();
+            }
+        }
+        else if(poured > threshold*3) {
+            cmdSend = "G";
+            if(amountToPour == threshold*3){
+                cmdSend = "F";
+                if(BT_is_connect) bl.sendData(cmdSend);
+
+                Intent goBackToChooseIngredient = new Intent();
+                setResult(RESULT_OK, goBackToChooseIngredient);
+                mp.release();
+                finish();
+            }
+        }
+        else if(poured >= threshold*2) {
             cmdSend = "E";
+            if(amountToPour == threshold*2){
+                cmdSend = "D";
+                if(BT_is_connect) bl.sendData(cmdSend);
 
-        // for now we only consider right-handed people
+                Intent goBackToChooseIngredient = new Intent();
+                setResult(RESULT_OK, goBackToChooseIngredient);
+                mp.release();
+                finish();
+            }
+        }
+        else if(poured >= threshold) {
+            cmdSend = "C";
+            if(amountToPour == threshold){
+                cmdSend = "B";
+                if(BT_is_connect) bl.sendData(cmdSend);
 
-//        xAxis = Math.round(xRaw*pwmMax/xR);
-//        yAxis = Math.round(yRaw*pwmMax/yMax);
-//
-//        if(xAxis > pwmMax) xAxis = pwmMax;
-//        else if(xAxis < -pwmMax) xAxis = -pwmMax;		// negative - tilt right (�����. �������� - ������ ������)
-//
-//        if(yAxis > pwmMax) yAxis = pwmMax;
-//        else if(yAxis < -pwmMax) yAxis = -pwmMax;		// negative - tilt forward (�����. �������� - ������ ������)
-//        else if(yAxis >= 0 && yAxis < yThreshold) yAxis = 0;
-//        else if(yAxis < 0 && yAxis > -yThreshold) yAxis = 0;
-//
-//        if(xAxis > 0) {		// if tilt to left, slow down the left engine (���� �����, �� �������� ����� �����)
-//            motorRight = yAxis;
-//            if(Math.abs(Math.round(xRaw)) > xR){
-//                motorLeft = Math.round((xRaw-xR)*pwmMax/(xMax-xR));
-//                motorLeft = Math.round(-motorLeft * yAxis/pwmMax);
-//                //if(motorLeft < -pwmMax) motorLeft = -pwmMax;
-//            }
-//            else motorLeft = yAxis - yAxis*xAxis/pwmMax;
-//        }
-//        else if(xAxis < 0) {		// tilt to right (������ ������)
-//            motorLeft = yAxis;
-//            if(Math.abs(Math.round(xRaw)) > xR){
-//                motorRight = Math.round((Math.abs(xRaw)-xR)*pwmMax/(xMax-xR));
-//                motorRight = Math.round(-motorRight * yAxis/pwmMax);
-//                //if(motorRight > -pwmMax) motorRight = -pwmMax;
-//            }
-//            else motorRight = yAxis - yAxis*Math.abs(xAxis)/pwmMax;
-//        }
-//        else if(xAxis == 0) {
-//            motorLeft = yAxis;
-//            motorRight = yAxis;
-//        }
-//
-//        if(motorLeft > 0) {			// tilt to backward (������ �����)
-//            directionL = "-";
-//        }
-//        if(motorRight > 0) {		// tilt to backward (������ �����)
-//            directionR = "-";
-//        }
-//        motorLeft = Math.abs(motorLeft);
-//        motorRight = Math.abs(motorRight);
-//
-//        if(motorLeft > pwmMax) motorLeft = pwmMax;
-//        if(motorRight > pwmMax) motorRight = pwmMax;
-//
-//        cmdSendL = String.valueOf(commandLeft+directionL+motorLeft+"\r");
-//        cmdSendR = String.valueOf(commandRight+directionR+motorRight+"\r");
+                Intent goBackToChooseIngredient = new Intent();
+                setResult(RESULT_OK, goBackToChooseIngredient);
+                mp.release();
+                finish();
+            }
 
+        }
+        else {
+            cmdSend = "A";
+        }
 
         pouredAmountTextView.setText(String.valueOf(poured));
 
@@ -223,6 +223,7 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
         super.onPause();
         bl.BT_onPause();
         mSensorManager.unregisterListener(this);
+        mp.release();
     }
 
     @Override

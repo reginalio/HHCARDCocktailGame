@@ -50,6 +50,7 @@ public class MainActivity extends ActionBarActivity {
 
                 Intent goToMakeCocktail = new Intent(view.getContext(), MakeCocktailScreen.class);
                 goToMakeCocktail.putExtra("whichCocktail", String.valueOf(adapterView.getItemAtPosition(position)));
+                goToMakeCocktail.putExtra("cockTailNumber", position);
                 startActivity(goToMakeCocktail);
             }
         });
