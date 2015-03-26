@@ -39,4 +39,16 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 
 </PreferenceCategory>
 
+<PreferenceCategory
+        android:key="pref_Shake"
+        android:title="Shake screen settings"
+        android:summary="Shake screen settings">
+
+    <CheckBoxPreference
+        android:key="pref_BGM"
+        android:title="Play background music"
+        android:summary="Play background music while shaking"
+        android:defaultValue="false" />
+</PreferenceCategory>
+
 </PreferenceScreen>

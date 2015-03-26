@@ -47,7 +47,7 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
         mp = MediaPlayer.create(this,R.raw.sink);
 
         address = (String) getResources().getText(R.string.default_MAC);
-        commandL1 = (String)"A";
+        commandL1 = "A";
 
         loadPref();
 
@@ -65,7 +65,7 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
         private final WeakReference<PourLiquidScreen> mActivity;
 
         public MyHandler(PourLiquidScreen activity) {
-            mActivity = new WeakReference<PourLiquidScreen>(activity);
+            mActivity = new WeakReference<>(activity);
         }
 
         @Override
@@ -107,8 +107,7 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
     };
 
     public void onSensorChanged(SensorEvent e) {
-        String cmdSend;
-        boolean pouring;
+        String cmdSend = "X";
         float xRaw, yRaw;		// RAW-value from Accelerometer sensor (RAW-�������� �� ��������������)
 
         TextView pouredAmountTextView = (TextView)findViewById(R.id.pouredAmount);
@@ -116,13 +115,9 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
         xRaw = e.values[0];
         yRaw = e.values[1];
 
-        if(yRaw < -0.3) {    // passed 90 degree tilt to left
-            pouring = true;
+        if(yRaw < -0.3) {    // passed 90 degree tilt to left = pouring
             poured += 1;
             mp.start();
-        }
-        else{
-            pouring = false;
         }
 
 

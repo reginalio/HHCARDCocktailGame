@@ -9,7 +9,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 public class MakeCocktailScreen extends Activity implements View.OnClickListener{
     int state = 0;
@@ -59,7 +58,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
             case R.id.orangeJuice:
                 if(state == 1) {
                     Intent intent_oj = new Intent(this, PourLiquidScreen.class);
-                    intent_oj.putExtra("amountToPour",30);
+                    intent_oj.putExtra("amountToPour",40);
                     startActivityForResult(intent_oj, result);
                 }else
                     Toast.makeText(MakeCocktailScreen.this, "This is not "+ ingredient[state] + "!",Toast.LENGTH_SHORT).show();
