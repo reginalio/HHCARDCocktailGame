@@ -13,4 +13,17 @@
         android:textStyle="bold"
         android:padding="15dp"
         />
+    <EditText
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/editCMD"
+        android:layout_gravity="center_horizontal" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendCmdToBluetoothButton"
+        android:onClick="onSendCmdToBluetooth"
+        android:text="Send cmd to Bluetooth"
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

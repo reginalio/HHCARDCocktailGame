@@ -14,6 +14,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
@@ -144,5 +146,12 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
 
     public void onAccuracyChanged(Sensor arg0, int arg1) {
         // TODO Auto-generated method stub
+    }
+
+    public void onSendCmdToBluetooth(View view){
+        EditText cmdET = (EditText)findViewById(R.id.editCMD);
+        String cmd = String.valueOf(cmdET.getText());
+
+        if(BT_is_connect) bl.sendData(cmd);
     }
 }

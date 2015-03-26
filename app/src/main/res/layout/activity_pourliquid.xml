@@ -62,9 +62,11 @@
         android:layout_toLeftOf="@+id/pouredAmount"
         android:layout_toStartOf="@+id/pouredAmount" />
     <Button
+        android:id="@+id/done_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pouredAmount"
+        android:onClick="onClick"
         android:layout_centerHorizontal="true"
         android:text="I'm done!"
         android:textSize="25sp"

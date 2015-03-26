@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +62,14 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
         //finish();
 
     }
+
+    public void onClick(View view) {
+        Intent goBackToChooseIngredient = new Intent();
+        setResult(RESULT_OK, goBackToChooseIngredient);
+        mp.release();
+        finish();
+    }
+
     private static class MyHandler extends Handler {
         private final WeakReference<PourLiquidScreen> mActivity;
 
@@ -130,11 +139,6 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
             if(amountToPour == threshold*4){
                 cmdSend = "H";
                 if(BT_is_connect) bl.sendData(cmdSend);
-
-                Intent goBackToChooseIngredient = new Intent();
-                setResult(RESULT_OK, goBackToChooseIngredient);
-                mp.release();
-                finish();
             }
         }
         else if(poured > threshold*3) {
