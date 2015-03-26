@@ -10,17 +10,18 @@ We can refer to images in our drawable folder with
  TODO get a better image with transparent background -->
 <ImageView
     android:id="@+id/imageView1"
-    android:layout_width="30dp"
-    android:layout_height="30dp"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="25dp"
-    android:src="@drawable/cocktail_icon"/>
+    android:src="@drawable/strawberry_daiquiri"/>
 
 <!-- Used to define a custom ListView row -->
 <TextView
     android:id="@+id/textView1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:textColor="#ffffff"
     android:textSize="30sp"
     android:textStyle="bold"
     android:padding="15dp"

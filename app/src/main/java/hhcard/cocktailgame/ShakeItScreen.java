@@ -27,7 +27,7 @@ import java.lang.ref.WeakReference;
 public class ShakeItScreen extends Activity implements SensorEventListener{
 
     private SensorManager mSensorManager;
-    private static final int SHAKE_THRESHOLD = 20;
+    private int SHAKE_THRESHOLD = 18;
     private Sensor mAccel;
     private cBluetooth bl = null;
 
@@ -43,23 +43,27 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
     ProgressBar progressBar;
     Button goToStirButton;
     TextView debugTextView;
+    String cocktailChosen;
+    int cocktailNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shakeit);
+        Intent shakeScreen = getIntent();
+        cocktailChosen = shakeScreen.getExtras().getString("whichCocktail");
+        cocktailNumber = shakeScreen.getExtras().getInt("cocktailNumber");
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         debugTextView = (TextView) findViewById(R.id.shakedAmountTextView);
         goToStirButton = (Button)findViewById(R.id.goToStirButton);
         goToStirButton.setVisibility(View.GONE);
 
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-//        mSensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER, SensorManager.SENSOR_DELAY_GAME);
-        mAccel = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
         address = (String) getResources().getText(R.string.default_MAC);
         loadPref();
+
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mAccel = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         bl = new cBluetooth(this, mHandler);
         bl.checkBTState();
@@ -73,7 +77,8 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
         if(BT_is_connect) bl.sendData("Z");
 
         Intent goToStirScreen = new Intent(this, StirringScreen.class);
-//        goToStirScreen.putExtra("cocktailChosen", cocktailChosen);
+        goToStirScreen.putExtra("whichCocktail", cocktailChosen);
+        goToStirScreen.putExtra("cocktailNumber", cocktailNumber);
         startActivity(goToStirScreen);
     }
 
@@ -168,6 +173,7 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
         address = mySharedPreferences.getString("pref_MAC_address", address);			// the first time we load the default values
         show_Debug = mySharedPreferences.getBoolean("pref_Debug", false);
         playBGM = mySharedPreferences.getBoolean("pref_BGM", false);
+        SHAKE_THRESHOLD = mySharedPreferences.getInt("pref_shakeThreshold", SHAKE_THRESHOLD);
     }
     @Override
     protected void onResume() {

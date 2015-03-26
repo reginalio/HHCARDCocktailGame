@@ -5,32 +5,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/small_background">
 
-
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/imageView"-->
-        <!--android:background="#ff000000"-->
-        <!--android:src="@drawable/congratulationsbackground"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_marginLeft="0dp"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginTop="0dp"-->
-        <!--android:layout_alignParentStart="true" />-->
-
     <ImageView
         android:layout_width="100dp"
         android:layout_height="200dp"
         android:id="@+id/youMadeImageView"
         android:layout_gravity="center_horizontal"
-        android:contentDescription="picture"
-        android:src="@drawable/cocktailwin"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
     <TextView
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:text="Congratulations! \nYou have made"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
         android:textStyle="bold"
         android:gravity="center"
         android:textSize="30sp"
@@ -54,5 +39,4 @@
         android:layout_marginBottom="100dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
-    <!--android:src="@drawable/cocktailwin" --> />
 </RelativeLayout>

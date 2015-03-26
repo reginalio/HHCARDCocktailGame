@@ -12,11 +12,17 @@ import android.widget.TextView;
 public class StirringScreen extends Activity {
 
     Button goToFinishButton;
+    String cocktailChosen;
+    int cocktailNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stir);
+        Intent stirScreen = getIntent();
+        cocktailChosen = stirScreen.getExtras().getString("whichCocktail");
+        cocktailNumber = stirScreen.getExtras().getInt("cocktailNumber");
+
         goToFinishButton = (Button)findViewById(R.id.goToFinishButton);
         goToFinishButton.setVisibility(View.GONE);
 
@@ -40,6 +46,8 @@ public class StirringScreen extends Activity {
 
     public void goToFinish(View view) {
         Intent goToFinishScreen = new Intent(this, Chosencocktail.class);
+        goToFinishScreen.putExtra("whichCocktail", cocktailChosen);
+        goToFinishScreen.putExtra("cocktailNumber", cocktailNumber);
         startActivity(goToFinishScreen);
     }
 }

@@ -17,8 +17,9 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
     String[] ingredient = {"Vodka", "Orange Juice", "Cointreau", "Strawberry Juice",
                             "Lime Juice", "Pineapple Juice", "White Rum", "Tequila"};
     int[] recipe = {0,1,3,6,2,7,5,6};
-    int[] ml = {10,30,20,30,30,30,10,20};
+    int[] ml = {10,30,30,10,20,20,30,10};
     String cocktailChosen;
+    int cocktailNumber;
 
 //    int[] ingredientImageView = {R.id.vodka, R.id.orangeJuice, R.id.cointreau, R.id.strawberry_juice,
 //                                    R.id.lime_juice, R.id.pineapple_juice, R.id.light_rum, R.id.tequila};
@@ -33,7 +34,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
 
         Intent cocktailToBeMade = getIntent();
         cocktailChosen = cocktailToBeMade.getExtras().getString("whichCocktail");
-        int cocktailNumber = cocktailToBeMade.getExtras().getInt("cocktailNumber");
+        cocktailNumber = cocktailToBeMade.getExtras().getInt("cocktailNumber");
         youAreMaking = (TextView) findViewById(R.id.cocktail_chosen);
 
         state = cocktailNumber*2;
@@ -71,30 +72,31 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.vodka:
                 if (recipe[state] == 0) {
-                    Intent intent_vodka = new Intent(this, PourLiquidScreen.class);
-                    intent_vodka.putExtra("amountToPour",ml[state]);
-                    intent_vodka.putExtra("amountAlreadyInCup", amountAlreadyInCup);
-                    startActivityForResult(intent_vodka, result);
+                    Intent intent_pour = new Intent(this, PourLiquidScreen.class);
+//                    intent_pour.putExtra("amountToPour",ml[state]);
+                    intent_pour.putExtra("amountToPour",ml[state]);
+                    intent_pour.putExtra("amountAlreadyInCup", amountAlreadyInCup);
+                    startActivityForResult(intent_pour, result);
                 }else
                     Toast.makeText(MakeCocktailScreen.this, "This is not "+ ingredient[recipe[state]] + "!",Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.orangeJuice:
                 if(recipe[state] == 1) {
-                    Intent intent_oj = new Intent(this, PourLiquidScreen.class);
-                    intent_oj.putExtra("amountToPour",ml[state]);
-                    intent_oj.putExtra("amountAlreadyInCup", amountAlreadyInCup);
-                    startActivityForResult(intent_oj, result);
+                    Intent intent_pour = new Intent(this, PourLiquidScreen.class);
+                    intent_pour.putExtra("amountToPour",ml[state]);
+                    intent_pour.putExtra("amountAlreadyInCup", amountAlreadyInCup);
+                    startActivityForResult(intent_pour, result);
                 }else
                     Toast.makeText(MakeCocktailScreen.this, "This is not "+ ingredient[recipe[state]] + "!",Toast.LENGTH_SHORT).show();
 
                 break;
             case R.id.cointreau:
                 if(recipe[state] == 2) {
-                    Intent intent_oj = new Intent(this, PourLiquidScreen.class);
-                    intent_oj.putExtra("amountToPour",ml[state]);
-                    intent_oj.putExtra("amountAlreadyInCup", amountAlreadyInCup);
-                    startActivityForResult(intent_oj, result);
+                    Intent intent_pour = new Intent(this, PourLiquidScreen.class);
+                    intent_pour.putExtra("amountToPour", ml[state]);
+                    intent_pour.putExtra("amountAlreadyInCup", amountAlreadyInCup);
+                    startActivityForResult(intent_pour, result);
                 }else
                     Toast.makeText(MakeCocktailScreen.this, "This is not "+ ingredient[recipe[state]] + "!",Toast.LENGTH_SHORT).show();
 
@@ -165,6 +167,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
         }else{
             Intent shakeIt = new Intent(this, ShakeItScreen.class);
             shakeIt.putExtra("whichCocktail", cocktailChosen);
+            shakeIt.putExtra("cocktailNumber", cocktailNumber);
             startActivity(shakeIt);
 
         }

@@ -49,6 +49,7 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
         amountToPour = pourIngredient.getExtras().getInt("amountToPour");
         amountAlreadyInCup = pourIngredient.getExtras().getInt("amountAlreadyInCup");
         poured += amountAlreadyInCup;
+        amountToPour += amountAlreadyInCup;
         cmdPrev = "Z";
 
         mp = MediaPlayer.create(this,R.raw.sink);
@@ -164,7 +165,7 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
             cmdSend = "A";
         }
 
-        pouredAmountTextView.setText(String.valueOf(poured));
+        pouredAmountTextView.setText(String.valueOf(poured)+"ml");
 
         if(BT_is_connect && (!cmdPrev.equals(cmdSend))){
             bl.sendData(cmdSend);
