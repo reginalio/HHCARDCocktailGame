@@ -59,6 +59,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/cointreau"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/orangeJuice"
         android:layout_toEndOf="@+id/orangeJuice"
@@ -80,6 +82,8 @@
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
         android:id="@+id/lime_juice"
         android:layout_below="@+id/orangeJuice"
         android:layout_alignParentLeft="true"

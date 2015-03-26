@@ -15,6 +15,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -40,7 +41,7 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
 
     private float shakedAmount = 0;
     ProgressBar progressBar;
-
+    Button goToStirButton;
     TextView debugTextView;
 
     @Override
@@ -50,6 +51,8 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         debugTextView = (TextView) findViewById(R.id.shakedAmountTextView);
+        goToStirButton = (Button)findViewById(R.id.goToStirButton);
+        goToStirButton.setVisibility(View.GONE);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 //        mSensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER, SensorManager.SENSOR_DELAY_GAME);
@@ -65,6 +68,13 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
         //finish();
 
     }
+
+    public void goToStir(View view) {
+        Intent goToStirScreen = new Intent(this, StirringScreen.class);
+//        goToStirScreen.putExtra("cocktailChosen", cocktailChosen);
+        startActivity(goToStirScreen);
+    }
+
     private static class MyHandler extends Handler {
         private final WeakReference<ShakeItScreen> mActivity;
 
@@ -138,6 +148,9 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
             if(show_Debug)
                 debugTextView.setText(String.valueOf("shake:" + String.format("%.1f",shakedAmount)));
 
+            if(shakedAmount > 100)
+                goToStirButton.setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -161,6 +174,7 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
         bl.BT_onPause();
         mSensorManager.unregisterListener(this);
     }
+
 
     public void onAccuracyChanged(Sensor arg0, int arg1) {
         // TODO Auto-generated method stub
