@@ -140,10 +140,7 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
         int threshold = 10;
 
         if(poured > threshold*4) {
-            cmdSend = "I";
-            if(amountToPour == threshold*4){
-                cmdSend = "H";
-            }
+            cmdSend = "H";
         }
         else if(poured > threshold*3) {
             cmdSend = "G";

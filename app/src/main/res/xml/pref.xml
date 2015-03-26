@@ -49,6 +49,11 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         android:title="Play background music"
         android:summary="Play background music while shaking"
         android:defaultValue="false" />
+    <EditTextPreference
+        android:key="pref_shakeThreshold"
+        android:title="Sensitivity for shaking"
+        android:summary="Define sensitivity threshold"
+        android:defaultValue="20" />
 </PreferenceCategory>
 
 </PreferenceScreen>

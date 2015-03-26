@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/smaller_shelves"
+    android:background="@drawable/smaller_shelves1"
     android:weightSum="1">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:id="@+id/cocktail_chosen"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textColor="#ffffffff"
         android:textStyle="bold"
         android:background="#a00a141b"
@@ -20,16 +20,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <!--<TextView-->
-        <!--android:text=""-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="10dp"-->
-        <!--android:id="@+id/select_cocktail"-->
-        <!--android:textSize="30sp"-->
-        <!--android:textColor="#ff2b9fff"-->
-        <!--android:textStyle="bold" />-->
 
     <ImageButton
         android:layout_width="80dp"
@@ -39,7 +29,7 @@
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:background="@null"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/vodka"
         android:layout_toRightOf="@+id/vodka"
         android:layout_toEndOf="@+id/vodka" />
 
@@ -53,7 +43,8 @@
         android:background="@null"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp" />
 
     <ImageButton
         android:layout_width="100dp"
@@ -61,11 +52,11 @@
         android:id="@+id/cointreau"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/orangeJuice"
-        android:layout_toEndOf="@+id/orangeJuice"
         android:background="@null"
-        android:src="@drawable/cointreau_liquor" />
+        android:src="@drawable/cointreau_liquor"
+        android:layout_above="@+id/lime_juice"
+        android:layout_toRightOf="@+id/orangeJuice"
+        android:layout_toEndOf="@+id/orangeJuice" />
 
     <ImageButton
         android:layout_width="100dp"
@@ -85,14 +76,15 @@
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:id="@+id/lime_juice"
+        android:src="@drawable/limejuice"
+        android:background="@null"
         android:layout_below="@+id/orangeJuice"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@drawable/limejuice"
-        android:background="@null" />
+        android:layout_marginTop="30dp" />
 
     <ImageButton
-        android:layout_width="100dp"
+        android:layout_width="70dp"
         android:layout_height="100dp"
         android:id="@+id/pineapple_juice"
         android:background="@null"
@@ -104,7 +96,7 @@
         android:layout_toEndOf="@+id/lime_juice" />
 
     <ImageButton
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="100dp"
         android:id="@+id/light_rum"
         android:layout_alignTop="@+id/pineapple_juice"
@@ -113,6 +105,18 @@
         android:scaleType="fitXY"
         android:background="@null"
         android:src="@drawable/light_rum"
+        android:adjustViewBounds="true" />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:id="@+id/tequila"
+        android:layout_alignTop="@+id/pineapple_juice"
+        android:layout_toRightOf="@+id/light_rum"
+        android:layout_toEndOf="@+id/pineapple_juice"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:src="@drawable/tequila"
         android:adjustViewBounds="true" />
 
 </RelativeLayout>

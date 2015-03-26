@@ -70,6 +70,8 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
     }
 
     public void goToStir(View view) {
+        if(BT_is_connect) bl.sendData("Z");
+
         Intent goToStirScreen = new Intent(this, StirringScreen.class);
 //        goToStirScreen.putExtra("cocktailChosen", cocktailChosen);
         startActivity(goToStirScreen);
@@ -121,6 +123,8 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
     };
 
     public void onSensorChanged(SensorEvent e) {
+        String cmdSend = "S";
+
         long curTime = System.currentTimeMillis();
         // only allow one update every 100ms.
         if ((curTime - lastUpdate) > 100) {
@@ -136,6 +140,10 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
             float speed = Math.abs(x+y+z-last_x-last_y-last_z) / diffTime * 1000;
 
             if (speed > SHAKE_THRESHOLD) {
+                if(BT_is_connect && cmdSend.equals("S")){
+                    bl.sendData(cmdSend);
+                    cmdSend = "meh";
+                }
                 shakedAmount += speed/40;
                 progressBar.setProgress((int)shakedAmount);
                 Log.d("sensor", "shake detected w/ speed: " + speed);
