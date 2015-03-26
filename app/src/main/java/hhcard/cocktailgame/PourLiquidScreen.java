@@ -35,8 +35,10 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
     private String commandL1;		// command symbol for LED1 from settings (������ ������� ������ ��������� �� ��������)
 
     private int poured = 0;         // amount of liquid poured
-    private int amountToPour = 0;
+    private int amountToPour;
+    private int amountAlreadyInCup;
     private MediaPlayer mp;
+    private String cmdPrev;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,10 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
 
         Intent pourIngredient = getIntent();
         amountToPour = pourIngredient.getExtras().getInt("amountToPour");
+        amountAlreadyInCup = pourIngredient.getExtras().getInt("amountAlreadyInCup");
+        poured += amountAlreadyInCup;
+        cmdPrev = "Z";
+
         mp = MediaPlayer.create(this,R.raw.sink);
 
         address = (String) getResources().getText(R.string.default_MAC);
@@ -65,6 +71,7 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
 
     public void onClick(View view) {
         Intent goBackToChooseIngredient = new Intent();
+        goBackToChooseIngredient.putExtra("pouredAmount", poured);
         setResult(RESULT_OK, goBackToChooseIngredient);
         mp.release();
         finish();
@@ -129,54 +136,32 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
             mp.start();
         }
 
-
-
-        poured = Math.min(poured, 1000);
+        poured = Math.min(poured, 100);
         int threshold = 10;
 
         if(poured > threshold*4) {
             cmdSend = "I";
             if(amountToPour == threshold*4){
                 cmdSend = "H";
-                if(BT_is_connect) bl.sendData(cmdSend);
             }
         }
         else if(poured > threshold*3) {
             cmdSend = "G";
             if(amountToPour == threshold*3){
                 cmdSend = "F";
-                if(BT_is_connect) bl.sendData(cmdSend);
-
-                Intent goBackToChooseIngredient = new Intent();
-                setResult(RESULT_OK, goBackToChooseIngredient);
-                mp.release();
-                finish();
             }
         }
         else if(poured >= threshold*2) {
             cmdSend = "E";
             if(amountToPour == threshold*2){
                 cmdSend = "D";
-                if(BT_is_connect) bl.sendData(cmdSend);
-
-                Intent goBackToChooseIngredient = new Intent();
-                setResult(RESULT_OK, goBackToChooseIngredient);
-                mp.release();
-                finish();
             }
         }
         else if(poured >= threshold) {
             cmdSend = "C";
             if(amountToPour == threshold){
                 cmdSend = "B";
-                if(BT_is_connect) bl.sendData(cmdSend);
-
-                Intent goBackToChooseIngredient = new Intent();
-                setResult(RESULT_OK, goBackToChooseIngredient);
-                mp.release();
-                finish();
             }
-
         }
         else {
             cmdSend = "A";
@@ -184,7 +169,10 @@ public class PourLiquidScreen extends Activity implements SensorEventListener{
 
         pouredAmountTextView.setText(String.valueOf(poured));
 
-        if(BT_is_connect) bl.sendData(cmdSend);
+        if(BT_is_connect && (!cmdPrev.equals(cmdSend))){
+            bl.sendData(cmdSend);
+            cmdPrev = cmdSend;
+        }
 
         TextView textX = (TextView) findViewById(R.id.textViewX);
         TextView textY = (TextView) findViewById(R.id.textViewY);

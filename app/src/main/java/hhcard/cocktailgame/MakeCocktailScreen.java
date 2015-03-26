@@ -14,6 +14,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
     int state = 0;
     String[] ingredient = {"Vodka", "Orange Juice"};
     TextView youAreMaking;
+    int amountAlreadyInCup = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
                 if (state == 0) {
                     Intent intent_vodka = new Intent(this, PourLiquidScreen.class);
                     intent_vodka.putExtra("amountToPour",10);
+                    intent_vodka.putExtra("amountAlreadyInCup", amountAlreadyInCup);
                     startActivityForResult(intent_vodka, result);
                 }else
                     Toast.makeText(MakeCocktailScreen.this, "This is not "+ ingredient[state] + "!",Toast.LENGTH_SHORT).show();
@@ -58,7 +60,8 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
             case R.id.orangeJuice:
                 if(state == 1) {
                     Intent intent_oj = new Intent(this, PourLiquidScreen.class);
-                    intent_oj.putExtra("amountToPour",40);
+                    intent_oj.putExtra("amountToPour",30);
+                    intent_oj.putExtra("amountAlreadyInCup", amountAlreadyInCup);
                     startActivityForResult(intent_oj, result);
                 }else
                     Toast.makeText(MakeCocktailScreen.this, "This is not "+ ingredient[state] + "!",Toast.LENGTH_SHORT).show();
@@ -77,6 +80,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode,resultCode,data);
 
+        amountAlreadyInCup = data.getIntExtra("pouredAmount", 0);
         state++;
         if(state<2) {
             youAreMaking.setText("Now let's choose " + ingredient[state]);

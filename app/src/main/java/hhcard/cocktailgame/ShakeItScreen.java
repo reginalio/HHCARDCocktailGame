@@ -16,6 +16,8 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
@@ -24,7 +26,7 @@ import java.lang.ref.WeakReference;
 public class ShakeItScreen extends Activity implements SensorEventListener{
 
     private SensorManager mSensorManager;
-    private static final int SHAKE_THRESHOLD = 800;
+    private static final int SHAKE_THRESHOLD = 20;
     private Sensor mAccel;
     private cBluetooth bl = null;
 
@@ -36,10 +38,18 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
     private float x,y,z;
     private float last_x, last_y, last_z = 0;
 
+    private float shakedAmount = 0;
+    ProgressBar progressBar;
+
+    TextView debugTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shakeit);
+
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        debugTextView = (TextView) findViewById(R.id.shakedAmountTextView);
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 //        mSensorManager.registerListener(this, SensorManager.SENSOR_ACCELEROMETER, SensorManager.SENSOR_DELAY_GAME);
@@ -105,21 +115,29 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
         // only allow one update every 100ms.
         if ((curTime - lastUpdate) > 100) {
             long diffTime = (curTime - lastUpdate);
+            Log.d("sensor", "diffTime = " + diffTime);
+
             lastUpdate = curTime;
 
             x = e.values[0];
             y = e.values[1];
             z = e.values[2];
 
-            float speed = Math.abs(x+y+z-last_x-last_y-last_z) / diffTime * 10000;
+            float speed = Math.abs(x+y+z-last_x-last_y-last_z) / diffTime * 1000;
 
             if (speed > SHAKE_THRESHOLD) {
+                shakedAmount += speed/40;
+                progressBar.setProgress((int)shakedAmount);
                 Log.d("sensor", "shake detected w/ speed: " + speed);
-                Toast.makeText(this, "shake detected w/ speed: " + speed, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "shake detected w/ speed: " + speed, Toast.LENGTH_SHORT).show();
             }
             last_x = x;
             last_y = y;
             last_z = z;
+
+            if(show_Debug)
+                debugTextView.setText(String.valueOf("shake:" + String.format("%.1f",shakedAmount)));
+
         }
     }
 
@@ -148,10 +166,4 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
         // TODO Auto-generated method stub
     }
 
-    public void onSendCmdToBluetooth(View view){
-        EditText cmdET = (EditText)findViewById(R.id.editCMD);
-        String cmd = String.valueOf(cmdET.getText());
-
-        if(BT_is_connect) bl.sendData(cmd);
-    }
 }

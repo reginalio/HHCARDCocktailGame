@@ -1,29 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="#ffffffff">
 
 
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Shake it shake it"
+        android:text="Cover the two cups and shake!"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:gravity="center"
         android:padding="15dp"
-        />
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editCMD"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sendCmdToBluetoothButton"
-        android:onClick="onSendCmdToBluetooth"
-        android:text="Send cmd to Bluetooth"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_marginBottom="48dp"
+        android:textColor="#ff504b9d"
+        android:layout_alignBottom="@+id/progressBar"
+        android:layout_centerHorizontal="true" />
+    <!--<EditText-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/editCMD"-->
+        <!--android:layout_gravity="center_horizontal" />-->
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/sendCmdToBluetoothButton"-->
+        <!--android:onClick="onSendCmdToBluetooth"-->
+        <!--android:text="Send cmd to Bluetooth"-->
+        <!--android:layout_gravity="center_horizontal"/>-->
 
-</LinearLayout>
+    <!--<ProgressBar-->
+        <!--style="?android:attr/progressBarStyleLarge"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:id="@+id/progressBar"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_weight="0.23" />-->
+
+    <ProgressBar
+        android:layout_width="260dp"
+        android:layout_height="20dp"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:id="@+id/progressBar"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="212dp" />
+
+    <TextView
+        android:layout_width="218dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/shakedAmountTextView"
+        android:layout_weight="0.04"
+        android:text="Shaked: "
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="34dp" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
+        android:text="Next"
+        android:textSize="25sp"
+        android:background="#c84f99b5"
+        android:textColor="#ffffffff"
+        android:id="@+id/goToStirButton"
+        android:onClick="goToStir"/>
+
+</RelativeLayout>
