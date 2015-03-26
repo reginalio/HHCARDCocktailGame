@@ -63,7 +63,7 @@
         android:layout_toRightOf="@+id/orangeJuice"
         android:layout_toEndOf="@+id/orangeJuice"
         android:background="@null"
-        android:src="@drawable/Cointreau_Liquor" />
+        android:src="@drawable/cointreau_liquor" />
 
     <ImageButton
         android:layout_width="100dp"
@@ -72,7 +72,7 @@
         android:layout_alignBottom="@+id/cointreau"
         android:layout_toRightOf="@+id/cointreau"
         android:layout_toEndOf="@+id/cointreau"
-        android:src="@drawable/strawberry_Juice"
+        android:src="@drawable/strawberry_juice"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:background="@null" />
@@ -84,7 +84,7 @@
         android:layout_below="@+id/orangeJuice"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@drawable/Limejuice"
+        android:src="@drawable/limejuice"
         android:background="@null" />
 
     <ImageButton
@@ -92,7 +92,7 @@
         android:layout_height="100dp"
         android:id="@+id/pineapple_juice"
         android:background="@null"
-        android:src="@drawable/Pineapple_juice"
+        android:src="@drawable/pineapple_juice"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:layout_alignTop="@+id/lime_juice"
@@ -108,7 +108,7 @@
         android:layout_toEndOf="@+id/pineapple_juice"
         android:scaleType="fitXY"
         android:background="@null"
-        android:src="@drawable/Light_rum"
+        android:src="@drawable/light_rum"
         android:adjustViewBounds="true" />
 
 </RelativeLayout>
