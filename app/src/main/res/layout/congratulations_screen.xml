@@ -3,24 +3,29 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/imageView"
         android:background="#ff000000"
-        android:src="@drawable/congradulations_background"
+        android:src="@drawable/congratulationsbackground"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="0dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp" />
+        android:layout_marginTop="0dp"
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="200dp"
         android:id="@+id/imageView2"
         android:layout_gravity="center_horizontal"
+        android:contentDescription="picture"
+        android:src="@drawable/cocktailwin"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignRight="@+id/play_again_button"
+        android:layout_alignEnd="@+id/play_again_button" />
 
     <Button
         android:layout_width="wrap_content"
