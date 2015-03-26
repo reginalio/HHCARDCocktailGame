@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/shelves"
+    android:background="@drawable/smaller_shelves"
     android:weightSum="1">
 
     <TextView
@@ -54,5 +54,61 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/cointreau"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/orangeJuice"
+        android:layout_toEndOf="@+id/orangeJuice"
+        android:background="@null"
+        android:src="@drawable/Cointreau_Liquor" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/strawberry_juice"
+        android:layout_alignBottom="@+id/cointreau"
+        android:layout_toRightOf="@+id/cointreau"
+        android:layout_toEndOf="@+id/cointreau"
+        android:src="@drawable/strawberry_Juice"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:background="@null" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/lime_juice"
+        android:layout_below="@+id/orangeJuice"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/Limejuice"
+        android:background="@null" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/pineapple_juice"
+        android:background="@null"
+        android:src="@drawable/Pineapple_juice"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_alignTop="@+id/lime_juice"
+        android:layout_toRightOf="@+id/lime_juice"
+        android:layout_toEndOf="@+id/lime_juice" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/light_rum"
+        android:layout_alignTop="@+id/pineapple_juice"
+        android:layout_toRightOf="@+id/pineapple_juice"
+        android:layout_toEndOf="@+id/pineapple_juice"
+        android:scaleType="fitXY"
+        android:background="@null"
+        android:src="@drawable/Light_rum"
+        android:adjustViewBounds="true" />
 
 </RelativeLayout>
