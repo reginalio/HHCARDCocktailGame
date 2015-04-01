@@ -21,7 +21,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Simple array with a list of my favorite TV shows
+        // array with a list of cocktail options
         String[] cocktails = {"Screwdriver", "Strawberry Daiquiri", "Margarita", "Pina Colada" };
 
         // The ListAdapter acts as a bridge between the data and each ListItem

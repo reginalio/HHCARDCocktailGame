@@ -21,8 +21,6 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
     String cocktailChosen;
     int cocktailNumber;
 
-//    int[] ingredientImageView = {R.id.vodka, R.id.orangeJuice, R.id.cointreau, R.id.strawberry_juice,
-//                                    R.id.lime_juice, R.id.pineapple_juice, R.id.light_rum, R.id.tequila};
     TextView youAreMaking;
     int amountAlreadyInCup = 0;
 
@@ -40,8 +38,6 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
         state = cocktailNumber*2;
         endState = state + 2;
         youAreMaking.setText("Let's make " + cocktailChosen + "\nAdd " + ml[state] + "ml of "+ingredient[recipe[state]]);
-
-       // TextView whatToChooseTextView = (TextView) findViewById(R.id.select_cocktail);
 
         ImageButton vodkaImageButton = (ImageButton) findViewById(R.id.vodka);
         vodkaImageButton.setOnClickListener(this);

@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 
 public class Chosencocktail extends Activity {
 
@@ -41,11 +39,5 @@ public class Chosencocktail extends Activity {
         Log.d("Finish", "Going back to main");
         startActivity(goBackToMain);
     }
-//
-//    public void onClick(View view){
-//        Intent goBackToMain = new Intent(this, MainActivity.class);
-//        Log.d("Finish", "Going back to main");
-//        startActivity(goBackToMain);
-//    }
 
 }
