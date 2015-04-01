@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/small_background">
+    android:background="@drawable/congrats_new">
 
     <ImageView
         android:layout_width="100dp"
@@ -36,7 +36,7 @@
         android:textColor="#ffffffff"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="60dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp" />
 </RelativeLayout>

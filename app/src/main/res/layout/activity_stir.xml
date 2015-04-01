@@ -8,7 +8,7 @@
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:text="Now stir for 10s"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:textColor="#ff504b9d"
         android:layout_alignParentTop="true"
@@ -17,17 +17,16 @@
         android:gravity="center"
         android:id="@+id/textView" />
     <TextView
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="50sp"
         android:textStyle="bold"
         android:text="time"
         android:gravity="center"
+        android:layout_marginTop="20dp"
         android:id="@+id/countDownTextView"
         android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/goToFinishButton"
-        android:layout_alignStart="@+id/goToFinishButton"
-        android:layout_marginTop="20dp" />
+        android:layout_centerHorizontal="true" />
     <Button
         android:layout_width="100dp"
         android:layout_height="50dp"

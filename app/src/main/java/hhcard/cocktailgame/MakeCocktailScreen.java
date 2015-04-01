@@ -72,8 +72,8 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
         switch (v.getId()) {
             case R.id.vodka:
                 if (recipe[state] == 0) {
+                    Toast.makeText(MakeCocktailScreen.this, "Getting "+ingredient[recipe[state]],Toast.LENGTH_SHORT);
                     Intent intent_pour = new Intent(this, PourLiquidScreen.class);
-//                    intent_pour.putExtra("amountToPour",ml[state]);
                     intent_pour.putExtra("amountToPour",ml[state]);
                     intent_pour.putExtra("amountAlreadyInCup", amountAlreadyInCup);
                     startActivityForResult(intent_pour, result);
@@ -83,6 +83,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
                 break;
             case R.id.orangeJuice:
                 if(recipe[state] == 1) {
+                    Toast.makeText(MakeCocktailScreen.this, "Getting "+ingredient[recipe[state]],Toast.LENGTH_SHORT);
                     Intent intent_pour = new Intent(this, PourLiquidScreen.class);
                     intent_pour.putExtra("amountToPour",ml[state]);
                     intent_pour.putExtra("amountAlreadyInCup", amountAlreadyInCup);
@@ -93,6 +94,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
                 break;
             case R.id.cointreau:
                 if(recipe[state] == 2) {
+                    Toast.makeText(MakeCocktailScreen.this, "Getting "+ingredient[recipe[state]],Toast.LENGTH_SHORT);
                     Intent intent_pour = new Intent(this, PourLiquidScreen.class);
                     intent_pour.putExtra("amountToPour", ml[state]);
                     intent_pour.putExtra("amountAlreadyInCup", amountAlreadyInCup);
@@ -103,6 +105,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
                 break;
             case R.id.strawberry_juice:
                 if(recipe[state] == 3) {
+                    Toast.makeText(MakeCocktailScreen.this, "Getting "+ingredient[recipe[state]],Toast.LENGTH_SHORT);
                     Intent intent_oj = new Intent(this, PourLiquidScreen.class);
                     intent_oj.putExtra("amountToPour",ml[state]);
                     intent_oj.putExtra("amountAlreadyInCup", amountAlreadyInCup);
@@ -113,6 +116,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
                 break;
             case R.id.lime_juice:
                 if(recipe[state] == 4) {
+                    Toast.makeText(MakeCocktailScreen.this, "Getting "+ingredient[recipe[state]],Toast.LENGTH_SHORT);
                     Intent intent_oj = new Intent(this, PourLiquidScreen.class);
                     intent_oj.putExtra("amountToPour",ml[state]);
                     intent_oj.putExtra("amountAlreadyInCup", amountAlreadyInCup);
@@ -123,6 +127,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
                 break;
             case R.id.pineapple_juice:
                 if(recipe[state] == 5) {
+                    Toast.makeText(MakeCocktailScreen.this, "Getting "+ingredient[recipe[state]],Toast.LENGTH_SHORT);
                     Intent intent_oj = new Intent(this, PourLiquidScreen.class);
                     intent_oj.putExtra("amountToPour",ml[state]);
                     intent_oj.putExtra("amountAlreadyInCup", amountAlreadyInCup);
@@ -133,6 +138,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
                 break;
             case R.id.light_rum:
                 if(recipe[state] == 6) {
+                    Toast.makeText(MakeCocktailScreen.this, "Getting "+ingredient[recipe[state]],Toast.LENGTH_SHORT);
                     Intent intent_oj = new Intent(this, PourLiquidScreen.class);
                     intent_oj.putExtra("amountToPour",ml[state]);
                     intent_oj.putExtra("amountAlreadyInCup", amountAlreadyInCup);
@@ -143,6 +149,7 @@ public class MakeCocktailScreen extends Activity implements View.OnClickListener
                 break;
             case R.id.tequila:
                 if(recipe[state] == 7) {
+                    Toast.makeText(MakeCocktailScreen.this, "Getting "+ingredient[recipe[state]],Toast.LENGTH_SHORT);
                     Intent intent_oj = new Intent(this, PourLiquidScreen.class);
                     intent_oj.putExtra("amountToPour",ml[state]);
                     intent_oj.putExtra("amountAlreadyInCup", amountAlreadyInCup);

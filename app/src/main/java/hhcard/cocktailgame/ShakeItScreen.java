@@ -9,6 +9,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,7 +30,7 @@ import java.lang.ref.WeakReference;
 public class ShakeItScreen extends Activity implements SensorEventListener{
 
     private SensorManager mSensorManager;
-    private int SHAKE_THRESHOLD = 18;
+    private int SHAKE_THRESHOLD;
     private Sensor mAccel;
     private cBluetooth bl = null;
 
@@ -46,6 +49,10 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
     String cocktailChosen;
     int cocktailNumber;
 
+    private MediaPlayer taylor;
+    SoundPool waterSplash;
+    int waterid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +67,15 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
         goToStirButton.setVisibility(View.GONE);
 
         address = (String) getResources().getText(R.string.default_MAC);
+        SHAKE_THRESHOLD = 18;
         loadPref();
+
+        if(playBGM) {
+            taylor = MediaPlayer.create(this, R.raw.taylorswift_shake);
+        }else{
+            waterSplash = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+            waterid = waterSplash.load(this,R.raw.splash,1);
+        }
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mAccel = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -75,6 +90,8 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
 
     public void goToStir(View view) {
         if(BT_is_connect) bl.sendData("Z");
+
+        if(playBGM) taylor.release();
 
         Intent goToStirScreen = new Intent(this, StirringScreen.class);
         goToStirScreen.putExtra("whichCocktail", cocktailChosen);
@@ -110,7 +127,7 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
                         activity.startActivityForResult(enableBtIntent, 1);
                         break;
                     case cBluetooth.BL_SOCKET_FAILED:
-                        Toast.makeText(activity.getBaseContext(), "Socket failed", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(activity.getBaseContext(), "Socket failed", Toast.LENGTH_SHORT).show();
                         //activity.finish();
                         break;
                 }
@@ -148,6 +165,10 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
                 if(BT_is_connect && cmdSend.equals("S")){
                     bl.sendData(cmdSend);
                     cmdSend = "meh";
+                    if(playBGM)
+                        taylor.start();
+                    else
+                        waterSplash.play(waterid,1,1,1,1,1);
                 }
                 shakedAmount += speed/40;
                 progressBar.setProgress((int)shakedAmount);
@@ -173,7 +194,7 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
         address = mySharedPreferences.getString("pref_MAC_address", address);			// the first time we load the default values
         show_Debug = mySharedPreferences.getBoolean("pref_Debug", false);
         playBGM = mySharedPreferences.getBoolean("pref_BGM", false);
-        SHAKE_THRESHOLD = mySharedPreferences.getInt("pref_shakeThreshold", SHAKE_THRESHOLD);
+        SHAKE_THRESHOLD = Integer.parseInt(mySharedPreferences.getString("pref_shakeThreshold", "18"));
     }
     @Override
     protected void onResume() {
@@ -185,6 +206,7 @@ public class ShakeItScreen extends Activity implements SensorEventListener{
     @Override
     protected void onPause() {
         super.onPause();
+        if(playBGM) taylor.release();
         bl.BT_onPause();
         mSensorManager.unregisterListener(this);
     }

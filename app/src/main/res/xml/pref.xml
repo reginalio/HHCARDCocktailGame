@@ -53,7 +53,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
         android:key="pref_shakeThreshold"
         android:title="Sensitivity for shaking"
         android:summary="Define sensitivity threshold"
-        android:defaultValue="20" />
+        android:defaultValue="18" />
 </PreferenceCategory>
 
 </PreferenceScreen>
