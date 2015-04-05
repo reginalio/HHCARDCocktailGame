@@ -17,3 +17,7 @@ The Bluetooth setup is taken from an open source project CxemCar1 (https://githu
 ### Build
 We used Android studio for this project (min sdk version: 15)
 Code is tested on a Samsung phone running Android Kitkat 4.4.2
+
+xml code in `HHCARDCocktailGame/app/src/main/res/layout`
+java code in `HHCARDCocktailGame/app/src/main/java/hhcard/cocktailgame`
+ 
